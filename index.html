@@ -8,39 +8,53 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/index.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     />
+    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container">
-        <a class="navbar-brand" href="#">Loja de Hardware</a>
+        <a class="navbar-brand" href="#">MongoDB - Hardware</a>
       </div>
     </nav>
 
-    <div class="container mt-5 table-container">
-      <h2 class="mb-4">Itens da Loja de Hardware</h2>
-      <div class="d-flex justify-content-end mb-3">
-        <a href="form.html" class="btn btn-dark shadow-sm">Adicionar Item</a>
+    <div class="container mt-5">
+      <div class="highlight-section">
+        <h4><i class="bi bi-cpu me-2"></i>Bem-vindo à Loja de Hardware!</h4>
+        <p>
+          Aqui você encontra os principais componentes para montar ou atualizar
+          seu setup com qualidade. Navegue pelos nossos produtos, cadastre novos
+          itens e mantenha o estoque sempre em dia.
+        </p>
       </div>
 
-      <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-          <tr>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="hardware-list">
-          <!-- Itens via JS -->
-        </tbody>
-      </table>
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Itens da Loja</h2>
+        <a href="form.html" class="btn btn-dark shadow-sm">
+          <i class="bi bi-plus-circle me-2"></i>Adicionar Item
+        </a>
+      </div>
+
+      <div class="table-container">
+        <table class="table table-bordered table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th>Estoque</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="hardware-list">
+            <!-- Itens via JS -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Modal -->
@@ -81,79 +95,11 @@
       </div>
     </div>
 
-    <footer class="footer">Desenvolvido por Esaú, João Luís e Leonardo</footer>
+    <footer class="footer">
+      Desenvolvido por Esaú, João Luís, Leonardo e Samuel
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      const items = [
-        {
-          id: "1",
-          nome: "Placa de Vídeo RTX 3060",
-          categoria: "GPU",
-          preco: 2500,
-          estoque: 10,
-        },
-        {
-          id: "2",
-          nome: "Processador Ryzen 5 5600X",
-          categoria: "CPU",
-          preco: 1200,
-          estoque: 5,
-        },
-      ];
-
-      const listContainer = document.getElementById("hardware-list");
-      const deleteModal = new bootstrap.Modal(
-        document.getElementById("confirmDeleteModal")
-      );
-      let itemToDeleteId = null;
-
-      function renderItems() {
-        listContainer.innerHTML = "";
-        items.forEach((item) => {
-          listContainer.innerHTML += `
-          <tr>
-            <td>${item.nome}</td>
-            <td>${item.categoria}</td>
-            <td>R$ ${item.preco.toFixed(2)}</td>
-            <td>${item.estoque}</td>
-            <td>
-  <a href="form.html?id=${
-    item.id
-  }" class="btn btn-sm btn-warning me-2 text-white">
-    <i class="bi bi-pencil-fill text-white"></i>
-  </a>
-  <button class="btn btn-sm btn-danger text-white" onclick="confirmDelete('${
-    item.id
-  }', '${item.nome}')">
-    <i class="bi bi-trash-fill text-white"></i>
-  </button>
-</td>
-
-
-          </tr>
-        `;
-        });
-      }
-
-      function confirmDelete(id, nome) {
-        itemToDeleteId = id;
-        document.getElementById("itemToDeleteName").innerText = nome;
-        deleteModal.show();
-      }
-
-      document
-        .getElementById("confirmDeleteBtn")
-        .addEventListener("click", () => {
-          const index = items.findIndex((i) => i.id === itemToDeleteId);
-          if (index > -1) {
-            items.splice(index, 1);
-            renderItems();
-            deleteModal.hide();
-          }
-        });
-
-      renderItems();
-    </script>
+    <script src="js/script.js"></script>
   </body>
 </html>
