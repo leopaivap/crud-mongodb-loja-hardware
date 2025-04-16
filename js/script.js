@@ -33,7 +33,7 @@ function renderItems(items) {
         <td>
           <a href="form.html?id=${
             item.id
-          }" class="btn btn-sm btn-warning me-2 text-white">
+          }" class="btn btn-sm btn-primary me-2 text-white">
             <i class="bi bi-pencil-fill text-white"></i>
           </a>
           <button class="btn btn-sm btn-danger text-white" onclick="confirmDelete('${
